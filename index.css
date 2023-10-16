@@ -1,0 +1,145 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  /* 1 */
+  border-width: 0;
+  /* 2 */
+  border-style: solid;
+  /* 2 */
+  border-color: #e5e7eb;
+  /* 2 */
+}
+
+/* body */
+
+body, h1, p {
+    margin: 0;
+}
+
+body {
+    padding-top: 4rem;
+    font-family: 'Lato', sans-serif;
+    background-color: #ecfdf5;
+    color: #083344;
+}
+
+/* nav */
+#nav {
+    background-color: #581c87;
+    padding: 0 1rem;
+    position: fixed;
+    top: 0;
+    height: 4rem;
+    left: 0;
+    right: 0;
+}
+
+#nav-container {
+    max-width: 50rem;
+    margin: 0 auto;
+    height: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#nav-title {
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#nav-btn {
+    width: 3rem;
+    height: 3rem;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    background-color: inherit;
+    border: 2px solid white;
+    color: white;
+}
+
+#nav-btn:active {
+    background-color: white;
+    color: inherit;
+    transition: all 0.175s ease-in-out;
+}
+
+#nav-links-container {
+    gap: 1rem;
+    display: none;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+#main-container{
+    height: calc(100vh - 4rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 1rem;
+    max-width: 50rem;
+    margin: 0 auto;
+}
+
+#main-desc-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+#desc-text {
+    text-align: justify;
+}
+
+#desc-link {
+    background-color: #581c87;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 700;
+    width: 50%;
+}
+
+#desc-link:hover {
+    background-color: #14a6c0;
+    transition: all 0.175s ease-in-out;
+}
+
+@media (min-width: 768px) {
+    #nav-btn {
+        display: none;
+    }
+
+    #nav-links-container {
+        display: flex;
+    }
+
+    #main-container {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 1024px) {
+    #main-title {
+        width: 50%;
+        font-size: 6rem;
+    }
+
+    #main-desc-container {
+        width: 50%;
+    }
+}
