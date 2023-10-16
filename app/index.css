@@ -135,7 +135,6 @@ body {
 
 .erase-task {
     width: 10%;
-    height: auto;
     padding: 0.3rem;
     background-color: inherit;
     border: 0.5px solid white;
@@ -160,7 +159,6 @@ body {
 
 .complete-task {
     width: 10%;
-    height: auto;
     padding: 0.3rem;
     background-color: inherit;
     border: 0.5px solid white;
@@ -209,7 +207,6 @@ body {
     justify-content: space-between;
     align-items: center;
     padding-left: 0;
-    height: auto;
     border: 0.5px solid white;
 }
 
