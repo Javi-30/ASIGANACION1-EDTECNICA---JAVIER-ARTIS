@@ -199,6 +199,10 @@ body {
     width: 80%;
 }
 
+#task-list::-webkit-scrollbar {
+    display: none;
+}
+
 .filled-list {
     margin: 0 auto;
     margin-left: -2.5rem;
