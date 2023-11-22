@@ -27,7 +27,7 @@ const renderTasks = () => {
     });
 }
 
-const validateInput = () => {
+const validateInput = (validation) => {
     if (inputValid) {
         taskBtn.disabled = false;
     } else {
