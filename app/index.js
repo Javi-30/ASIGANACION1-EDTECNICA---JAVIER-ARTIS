@@ -27,7 +27,7 @@ const renderTasks = () => {
     });
 }
 
-const validateInput = (validation) => {
+const validateInput = (inputValid) => {
     if (inputValid) {
         taskBtn.disabled = false;
     } else {
@@ -41,17 +41,15 @@ inputTask.addEventListener('input', e => {
     validateInput(inputValid, inputTask);
 });
 
-console.log(validateInput.value);
-
-
 form.addEventListener('submit', e => {
     e.preventDefault();
     const taskCopy = tasks;
-    const sortedTaskCopy = taskCopy.sort((a,b) => b.id - a.id);
+    // .sort((a,b) => b - a);
+    // const sortedTaskCopy = taskCopy.sort((a,b) => b.id - a.id);
 
     const newTask = {
         filled: inputTask.value,
-        id: taskCopy.length ? sortedTaskCopy[0].id + 1 : 0,
+        id: taskCopy.length ? taskCopy[0].id + 1 : 0,
     }
 
     tasks = tasks.concat(newTask);
