@@ -96,7 +96,7 @@ body {
     align-items: center;
     width: 80%;
     margin: 0 auto;
-    margin-top: 3rem;
+    margin-top: 1rem;
 }
 
 #list-top {
@@ -216,6 +216,11 @@ body {
     display: none;
 }
 
+/* .filled-list, .check {
+    background-color: black;
+    display: none;
+} */
+
 .filled-list {
     margin: 0 auto;
     margin-left: -2.5rem;
@@ -226,6 +231,7 @@ body {
     padding-left: 0;
     border: 0.5px solid white;
 }
+
 
 /* task-count */
 
@@ -299,10 +305,9 @@ body {
         width: 86%;
     }
 
-    .textarea {
-        display: none;
+    #task-creator {
+        margin-top: 3rem;
     }
-   
 }
 
 @media (min-width: 1024px) {

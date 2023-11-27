@@ -2,6 +2,9 @@ const inputTask = document.querySelector('#input');
 const taskBtn = document.querySelector('#input-btn');
 const form = document.querySelector('#task-input');
 const list = document.querySelector('#task-list');
+const number = document.querySelector('#task-number');
+const complete = document.querySelector('#task-complete');
+const incomplete = document.querySelector('#task-uncomplete');
 
 let tasks = [];
 let inputValid = false;
@@ -43,16 +46,17 @@ inputTask.addEventListener('input', e => {
 
 form.addEventListener('submit', e => {
     e.preventDefault();
-    const taskCopy = tasks;
-    // .sort((a,b) => b - a);
-    // const sortedTaskCopy = taskCopy.sort((a,b) => b.id - a.id);
+    const taskCopy = [...tasks];
+    const sortedTaskCopy = taskCopy.sort((a,b) => b.id - a.id);
 
     const newTask = {
         filled: inputTask.value,
-        id: taskCopy.length ? taskCopy[0].id + 1 : 0,
+        id: taskCopy.length ? sortedTaskCopy[0].id + 1 : 0,
+        checked: false,
     }
 
     tasks = tasks.concat(newTask);
+    console.log(tasks);
     localStorage.setItem('tasks', JSON.stringify(tasks));
     renderTasks();
 
@@ -61,6 +65,27 @@ form.addEventListener('submit', e => {
     inputTask.value = '';
 
     validateInput(taskValidation, inputTask);
+
+    console.log(tasks.length);
+});
+
+list.addEventListener('click', e => {
+    const eraseTask = e.target.closest('.erase-task');
+    const checkTask = e.target.closest('.complete-task');
+
+    if (eraseTask) {
+        const taskToDelete = eraseTask.parentElement;
+        const id = Number(taskToDelete.id);
+        tasks = tasks.filter(task => task.id !== id);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        renderTasks();
+    }
+
+    if (checkTask) {
+        const taskChecked = checkTask.parentElement;
+        let checked = true;
+        console.log(checked);
+    }
 });
 
 (() => {
