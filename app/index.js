@@ -36,7 +36,13 @@ const renderTasks = () => {
 }
 
 renderLength = () => {
-    number.innerHTML = `<p id="task-number">Number of Tasks: ${tasks.length}</p>`
+    number.innerHTML = `<p id="task-number">Number of Tasks: ${tasks.length}</p>`;
+    
+    const completedTasks = tasks.filter(task => task.checked);
+    const incompleteTasks = tasks.filter(task => !task.checked);
+
+    complete.innerHTML = `<p id="task-complete">Completed Tasks: ${completedTasks.length}</p>`
+    incomplete.innerHTML = `<p id="task-uncomplete">Uncompleted Tasks: ${incompleteTasks.length}</p>`
 }
 
 const validateInput = (inputValid) => {
@@ -65,7 +71,6 @@ form.addEventListener('submit', e => {
     }
 
     tasks = tasks.concat(newTask);
-    console.log(tasks);
     localStorage.setItem('tasks', JSON.stringify(tasks));
     renderTasks();
     renderLength();
@@ -75,14 +80,11 @@ form.addEventListener('submit', e => {
     inputTask.value = '';
 
     validateInput(taskValidation, inputTask);
-
-    console.log(tasks.length);
 });
 
 list.addEventListener('click', e => {
     const eraseTask = e.target.closest('.erase-task');
     const checkTask = e.target.closest('.complete-task');
-    const uncheckTask = e.target.closest('.complete-task');
 
     if (eraseTask) {
         const taskToDelete = eraseTask.parentElement;
@@ -91,7 +93,6 @@ list.addEventListener('click', e => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
         renderTasks();
         renderLength();
-        console.log(tasks.length);
     }
 
     if (checkTask) {
@@ -99,7 +100,7 @@ list.addEventListener('click', e => {
         const id = Number(taskToCheck.id);
         tasks = tasks.map(task => {
             if (id === task.id) {
-                return {...task, checked: true}
+                return {...task, checked: !task.checked};
             } else {
                 return task;
             }
