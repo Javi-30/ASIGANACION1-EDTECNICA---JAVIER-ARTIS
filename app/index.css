@@ -216,10 +216,9 @@ body {
     display: none;
 }
 
-/* .filled-list, .check {
+.checked {
     background-color: black;
-    display: none;
-} */
+}
 
 .filled-list {
     margin: 0 auto;

@@ -13,6 +13,11 @@ const renderTasks = () => {
     list.innerHTML = '';
     tasks.forEach(task => {
         const listItem = document.createElement('li');
+        if (task.checked) {
+            listItem.classList.add('checked');
+        } else {
+            listItem.classList.remove('checked');
+        }
         listItem.classList.add('filled-list');
         listItem.id = task.id;
         listItem.innerHTML = `<button class="erase-task">
@@ -28,6 +33,10 @@ const renderTasks = () => {
     </button>`;
     list.append(listItem);
     });
+}
+
+renderLength = () => {
+    number.innerHTML = `<p id="task-number">Number of Tasks: ${tasks.length}</p>`
 }
 
 const validateInput = (inputValid) => {
@@ -59,6 +68,7 @@ form.addEventListener('submit', e => {
     console.log(tasks);
     localStorage.setItem('tasks', JSON.stringify(tasks));
     renderTasks();
+    renderLength();
 
     taskValidation = false;
 
@@ -72,6 +82,7 @@ form.addEventListener('submit', e => {
 list.addEventListener('click', e => {
     const eraseTask = e.target.closest('.erase-task');
     const checkTask = e.target.closest('.complete-task');
+    const uncheckTask = e.target.closest('.complete-task');
 
     if (eraseTask) {
         const taskToDelete = eraseTask.parentElement;
@@ -79,17 +90,31 @@ list.addEventListener('click', e => {
         tasks = tasks.filter(task => task.id !== id);
         localStorage.setItem('tasks', JSON.stringify(tasks));
         renderTasks();
+        renderLength();
+        console.log(tasks.length);
     }
 
     if (checkTask) {
-        const taskChecked = checkTask.parentElement;
-        let checked = true;
-        console.log(checked);
+        const taskToCheck = checkTask.parentElement;
+        const id = Number(taskToCheck.id);
+        tasks = tasks.map(task => {
+            if (id === task.id) {
+                return {...task, checked: true}
+            } else {
+                return task;
+            }
+        });
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        renderTasks();
+        renderLength(); 
     }
 });
+
+
 
 (() => {
     const taskStorage = localStorage.getItem('tasks') || [];
     tasks = JSON.parse(taskStorage);
     renderTasks();
+    renderLength();
 })();
