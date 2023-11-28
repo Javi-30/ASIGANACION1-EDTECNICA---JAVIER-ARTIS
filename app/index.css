@@ -217,7 +217,10 @@ body {
 }
 
 .checked {
-    background-color: black;
+    background-color: #115e59;
+    text-decoration: line-through;
+    text-decoration-thickness: 0.2rem;
+    text-decoration-color: #0d0c25;
 }
 
 .filled-list {
